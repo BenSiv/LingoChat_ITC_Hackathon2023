@@ -21,13 +21,13 @@ CREATE TABLE Interests (
     id int NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     description varchar(255),
-    PRIMARY KEY (id),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Users_Interests (
     id int NOT NULL AUTO_INCREMENT,
-    user_id varchar(255),
-    interests_id varchar(255),
+    user_id int,
+    interests_id int,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (interests_id) REFERENCES Interests(id)
@@ -36,10 +36,10 @@ CREATE TABLE Users_Interests (
 CREATE TABLE Chat_rooms (
     id int NOT NULL AUTO_INCREMENT,
     active tinyint,
-    top_interest_id varchar(255),
+    top_interest_id int,
     feature_vector int,
     PRIMARY KEY (id),
-    FOREIGN KEY (top_interest_id) REFERENCES Interests(id),
+    FOREIGN KEY (top_interest_id) REFERENCES Interests(id)
 );
 
 CREATE TABLE User_chat (
