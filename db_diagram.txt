@@ -1,0 +1,41 @@
+// Creating tables
+Table Users {
+  id int
+  name varchar
+  email varchar
+  password varchar
+  photo varchar // url
+}
+
+Table Interests {
+  id int
+  name varchar
+  description varchar
+}
+
+Table Users_Interests {
+  id int
+  user_id int
+  interests_id int
+}
+
+Table Chat_rooms {
+  id int
+  top_interest_id int
+  active bool
+  feature_vector array
+}
+
+Table User_chat {
+  id int
+  chat_id int
+  user_id int
+}
+
+
+// Creating connections
+Ref: Users.id > Users_Interests.user_id
+Ref: Interests.id > Users_Interests.interests_id
+Ref: Chat_rooms.top_interest_id > Interests.id
+Ref: User_chat.chat_id > Chat_rooms.id
+Ref: User_chat.user_id > Users.id
