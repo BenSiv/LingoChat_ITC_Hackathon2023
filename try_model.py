@@ -13,26 +13,6 @@ def calculate_distance(user1, user2):
     """
     return distance.euclidean(user1, user2)
 
-def calculate_distance(user1, user2):
-    """
-    Calculate the euclidean distance between two users
-    :param user1: first user's data
-    :param user2: second user's data
-    :return: euclidean distance between the two users
-    """
-    return distance.euclidean(user1, user2)
-
-def select_random_sample(df, n):
-    """
-    Select a random sample of n rows from the given dataframe
-    :param df: dataframe to select the sample from
-    :param n: number of rows to select
-    :return: dataframe with the selected rows
-    """
-    random_rows = random.sample(range(len(df)), n)
-    df_new_sample = df.iloc[random_rows]
-    return df_new_sample
-
 
 def find_closest_users(df, n_closest_users, threshold, group_number):
     """
@@ -83,7 +63,7 @@ if __name__ == '__main__':
     # read the data
     df = pd.read_csv('lingo_data.csv')
     # select a random sample of 30 rows
-    df_sample = select_random_sample(df, 40)
+    df_sample = df.sample(40)
 
     THRESHOLD = 2
     n_closest_users = 6

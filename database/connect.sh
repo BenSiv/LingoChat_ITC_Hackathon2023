@@ -17,5 +17,4 @@ sudo apt install mysql-client
 sudo mysql --user root
 
 # from remote
-mysql -h eu-central.connect.psdb.cloud -u 46p23e3ut8foc76nyqwj -ppscale_pw_u34i747OWB9j9dbDuiIut2hSba4gW3703Mn4RX7T3BM --ssl-ca=/etc/ssl/certs/ca-certificates.crt
-
+mysql -h eu-central.connect.psdb.cloud -u m1ow7xhhjf2u87ondhja -ppscale_pw_kI2oJ1yIUdgQQHMK4ovdB6UARJB4cf8UAmWwJliuuJp --ssl-ca=/etc/ssl/certs/ca-certificates.crt
