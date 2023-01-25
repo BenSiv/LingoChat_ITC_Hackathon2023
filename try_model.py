@@ -48,6 +48,7 @@ def find_closest_users(df, n_closest_users, threshold, group_number):
     starting_user = int(df.iloc[starting_row]['Unnamed: 0'])
     closest_users = [(starting_user, float('inf'))]
 
+    counter = 0
     if len(df) > 1:
         while len(closest_users) < n_closest_users and len(df) > 1:
             min_diff = float('inf')
@@ -65,10 +66,15 @@ def find_closest_users(df, n_closest_users, threshold, group_number):
                 closest_users.append((closest_user, min_diff))
             else:
                 break
+
+            counter += 1
+
+            if len(closest_users) == 1 and counter > 6:
+                break
+
         df = df[df['Unnamed: 0'] != starting_user]
 
     group_number += 1
-
 
     return group_number, closest_users, df
 
@@ -79,13 +85,15 @@ if __name__ == '__main__':
     # select a random sample of 30 rows
     df_sample = select_random_sample(df, 40)
 
-    THRESHOLD = 3
+    THRESHOLD = 2
     n_closest_users = 6
 
     group_number = 0
 
-    while len(df_sample) > 0:
+    while len(df_sample) > 1:
         group_number, closest_users, df_sample = find_closest_users(df_sample, n_closest_users, THRESHOLD, group_number)
+
+        print(closest_users)
 
         print("Group number:", group_number)
         print("User ids:", [user[0] for user in closest_users])
