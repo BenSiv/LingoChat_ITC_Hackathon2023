@@ -68,11 +68,10 @@ def sql_query(query, con):
     """
     "sql_connection" receives a string with sql query and returns it result using pymysql module.
     """
-    with con:
-        with con.cursor() as cursor:
-            cursor.execute(query)
-            result = cursor.fetchall()
-        return result
+    with con.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchall()
+    return result
 
 def fill_users_info():
     con = create_connection()
