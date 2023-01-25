@@ -3,9 +3,9 @@ Creating new database to store information from LingoChat app.
 */
 
 -- Initilizing database
-CREATE DATABASE lingochat;
+-- CREATE DATABASE lingochat;
 
-USE lingochat;
+-- USE lingochat;
 
 -- Initilizing tables
 CREATE TABLE Users (
@@ -29,9 +29,9 @@ CREATE TABLE Users_Interests (
     user_id int,
     interests_id int,
     rating int,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (interests_id) REFERENCES Interests(id)
+    PRIMARY KEY (id)
+    -- FOREIGN KEY (user_id) REFERENCES Users(id),
+    -- FOREIGN KEY (interests_id) REFERENCES Interests(id)
 );
 
 CREATE TABLE Chat_rooms (
@@ -39,19 +39,19 @@ CREATE TABLE Chat_rooms (
     active tinyint,
     top_interest_id int,
     feature_vector int,
-    PRIMARY KEY (id),
-    FOREIGN KEY (top_interest_id) REFERENCES Interests(id)
+    PRIMARY KEY (id)
+    -- FOREIGN KEY (top_interest_id) REFERENCES Interests(id)
 );
 
 CREATE TABLE User_chat (
     id int NOT NULL AUTO_INCREMENT,
     chat_id int,
     user_id int,
-    join_timestamp date,
-    leave_timestamp date,
-    PRIMARY KEY (id),
-    FOREIGN KEY (chat_id) REFERENCES Chat_rooms(id),
-    FOREIGN KEY (user_id) REFERENCES Users(id)
+    join_timestamp datetime,
+    leave_timestamp datetime,
+    PRIMARY KEY (id)
+    -- FOREIGN KEY (chat_id) REFERENCES Chat_rooms(id),
+    -- FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
 SHOW TABLES;

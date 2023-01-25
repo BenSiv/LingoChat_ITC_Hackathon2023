@@ -17,6 +17,5 @@ sudo apt install mysql-client
 sudo mysql --user root
 
 # from remote
-mysql --user root --host "ubuntu@ec2-18-198-4-32.eu-central-1.compute.amazonaws.com"
-# GRANT ALL PRIVILEGES ON *.* TO 'my_user'@'ip-10-55-142-144.ec2.internal' IDENTIFIED BY PASSWORD 'password'
-mysql --host lingochat.ccjdxs0hs7pn.us-east-1.rds.amazonaws.com --port 3306  --user admin --password
+mysql -h eu-central.connect.psdb.cloud -u 46p23e3ut8foc76nyqwj -ppscale_pw_u34i747OWB9j9dbDuiIut2hSba4gW3703Mn4RX7T3BM --ssl-ca=/etc/ssl/certs/ca-certificates.crt
+

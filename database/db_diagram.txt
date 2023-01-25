@@ -2,6 +2,7 @@
 Table Users {
   id int
   name varchar
+  age int
   email varchar
   password varchar
   photo varchar // url
@@ -10,7 +11,7 @@ Table Users {
 Table Interests {
   id int
   name varchar
-  description varchar
+  rating int
 }
 
 Table Users_Interests {
@@ -30,6 +31,8 @@ Table User_chat {
   id int
   chat_id int
   user_id int
+  join_timestamp datetime
+  leave_timestamp datetime
 }
 
 
