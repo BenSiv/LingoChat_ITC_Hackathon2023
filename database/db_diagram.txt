@@ -2,6 +2,7 @@
 Table Users {
   id int
   name varchar
+  age int
   email varchar
   password varchar
   photo varchar // url
@@ -10,7 +11,7 @@ Table Users {
 Table Interests {
   id int
   name varchar
-  description varchar
+  rating int
 }
 
 Table Users_Interests {
@@ -19,23 +20,25 @@ Table Users_Interests {
   interests_id int
 }
 
-Table Chat_rooms {
+Table Chat_Rooms {
   id int
   top_interest_id int
   active bool
   feature_vector array
 }
 
-Table User_chat {
+Table User_Chat {
   id int
   chat_id int
   user_id int
+  join_timestamp datetime
+  leave_timestamp datetime
 }
 
 
 // Creating connections
 Ref: Users.id > Users_Interests.user_id
 Ref: Interests.id > Users_Interests.interests_id
-Ref: Chat_rooms.top_interest_id > Interests.id
-Ref: User_chat.chat_id > Chat_rooms.id
-Ref: User_chat.user_id > Users.id
+Ref: Chat_Rooms.top_interest_id > Interests.id
+Ref: User_Chat.chat_id > Chat_Rooms.id
+Ref: User_Chat.user_id > Users.id
