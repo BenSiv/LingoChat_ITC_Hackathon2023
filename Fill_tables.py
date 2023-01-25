@@ -9,7 +9,7 @@ DATABASE_NAME = 'itc_hackaton'
 USER = 'm1ow7xhhjf2u87ondhja'
 PASSWORD = 'pscale_pw_kI2oJ1yIUdgQQHMK4ovdB6UARJB4cf8UAmWwJliuuJp'
 HOST = 'eu-central.connect.psdb.cloud'
-DATA_PATH = '/Users/ofir/Documents/Data_Science/ITC/Data_Science_Course_Oct_2022/Hackaton/LingoChat_ITC_Hackathon2023/lingodata_unscaled.csv'
+DATA_PATH = 'lingodata_unscaled.csv'
 HASH = '$2b$10$IIFvrmGsTgvo.H2mVLrpN.UCvh3A0nwOTWWF8fdxvXe4jaOVQvTUa'
 
 def create_connection():
