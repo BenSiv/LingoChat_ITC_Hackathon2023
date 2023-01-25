@@ -4,6 +4,23 @@ from scipy.spatial import distance
 
 pd.options.mode.chained_assignment = None
 
+def calculate_distance(user1, user2):
+    """
+    Calculate the euclidean distance between two users
+    :param user1: first user's data
+    :param user2: second user's data
+    :return: euclidean distance between the two users
+    """
+    return distance.euclidean(user1, user2)
+
+def calculate_distance(user1, user2):
+    """
+    Calculate the euclidean distance between two users
+    :param user1: first user's data
+    :param user2: second user's data
+    :return: euclidean distance between the two users
+    """
+    return distance.euclidean(user1, user2)
 
 def select_random_sample(df, n):
     """
@@ -31,30 +48,27 @@ def find_closest_users(df, n_closest_users, threshold, group_number):
     starting_user = int(df.iloc[starting_row]['Unnamed: 0'])
     closest_users = [(starting_user, float('inf'))]
 
-    if len(df) > 0:
-        while len(closest_users) < n_closest_users and len(df) > 0:
+    if len(df) > 1:
+        while len(closest_users) < n_closest_users and len(df) > 1:
             min_diff = float('inf')
             closest_user = None
-            for i, row in df.iterrows():
-                user1 = df.loc[df['Unnamed: 0'] == starting_user][
-                        df.columns.difference(['Unnamed: 0', 'group'])].values.flatten()
-                if \
-                        df.loc[df['Unnamed: 0'] == starting_user][
-                                df.columns.difference(['Unnamed: 0', 'group'])].values.shape[
-                                0] > 0:
-                    diff = distance.euclidean(user1, df.loc[df['Unnamed: 0'] == starting_user][
-                            df.columns.difference(['Unnamed: 0', 'group'])].values.flatten())
-                    if diff < min_diff:
-                        min_diff = diff
-                        closest_user = int(row['Unnamed: 0'])
+            for i, row in df[df['Unnamed: 0'] != starting_user].iterrows():
+                user1 = df.loc[df['Unnamed: 0'] == starting_user][df.columns.difference(['Unnamed: 0', 'group'])].values.flatten()
+                user2 = row[df.columns.difference(['Unnamed: 0', 'group'])].values
+                diff = calculate_distance(user1, user2)
+                if diff < min_diff:
+                    min_diff = diff
+                    closest_user = int(row['Unnamed: 0'])
 
             if min_diff <= threshold:
                 df = df[df['Unnamed: 0'] != closest_user]
                 closest_users.append((closest_user, min_diff))
             else:
                 break
+        df = df[df['Unnamed: 0'] != starting_user]
 
     group_number += 1
+
 
     return group_number, closest_users, df
 
@@ -63,9 +77,9 @@ if __name__ == '__main__':
     # read the data
     df = pd.read_csv('lingo_data.csv')
     # select a random sample of 30 rows
-    df_sample = select_random_sample(df, 30)
+    df_sample = select_random_sample(df, 40)
 
-    THRESHOLD = 0.5
+    THRESHOLD = 3
     n_closest_users = 6
 
     group_number = 0
@@ -74,6 +88,6 @@ if __name__ == '__main__':
         group_number, closest_users, df_sample = find_closest_users(df_sample, n_closest_users, THRESHOLD, group_number)
 
         print("Group number:", group_number)
-        print("User ids:", set(user[0] for user in closest_users))
+        print("User ids:", [user[0] for user in closest_users])
 
 
