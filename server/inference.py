@@ -3,7 +3,7 @@ inference server
 """
 
 # moduls
-from test_server import greet_sf
+from test_server import greet_fs
 from flask import Flask
 from flask import request
 
