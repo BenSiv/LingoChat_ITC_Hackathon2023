@@ -2,4 +2,4 @@
 Language learning social app
 
 
-![Database scheme]("db_diagram.png")
+![](db_diagram.png)
