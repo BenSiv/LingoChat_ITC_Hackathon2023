@@ -44,7 +44,7 @@ def main():
         return "0"
 
     @app.route("/update_chat_vector")
-    def update_chat_vector():
+    def update_vector():
         print("start")
         con = create_connection()
 
