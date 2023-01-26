@@ -36,11 +36,11 @@ def main():
         available_chats = get_available_chats(max_users, feature_inputs["language"], con)
         for user_number, chat_rooms in available_chats.items():
             current_chat_vectors = get_chat_vectors(chat_rooms, con)
-            if current_chat_vectors:
+            if len(current_chat_vectors) == 0:
                 continue
             distances = np.array(distance_vectorized(current_chat_vectors, user_vector))
             print(distances)
-            if distances:
+            if len(distances) == 0:
                 continue
             min_dist = distances.min()
             argmin_dist = distances.argmin()
