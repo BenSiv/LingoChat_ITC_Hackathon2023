@@ -8,12 +8,13 @@ pd.options.mode.chained_assignment = None
 def calculate_distance(user1, user2):
     return distance.euclidean(user1, user2)
 
-
 def best_topic(index_list, df):
+    means = list()
     index_df = df.loc[index_list]
     index_df = index_df.drop(columns=['Age', 'Gender_mapped', 'Unnamed: 0'])
-    sums = index_df.sum()
-    max_col = sums.idxmax()
+    means = index_df.mean().values
+    highest_ind = np.argmax(means)
+    max_col = index_df.columns[highest_ind]
     return max_col
 
 
@@ -25,14 +26,13 @@ def new_user_potential_group(row_sample, dict_group, df, threshold, n_closest_us
         if len(value[0]) < n_closest_users:
             index_df = df.loc[value[0]]
             min_diff = float('inf')
-            for i, row in index_df.iterrows():
-                new_user = row_sample[df_new.columns.difference(['Unnamed: 0', 'group'])].values.flatten()
-                old_user = row[df.columns.difference(['Unnamed: 0', 'group'])].values
-                diff = calculate_distance(new_user, old_user)
-                if diff < threshold:
-                    if diff < min_diff:
-                        min_diff = diff
-                        dict_for_users.update({group: min_diff})
+            new_user = row_sample[df_new.columns.difference(['Unnamed: 0', 'group'])].values.flatten()
+            group_vector = get_vectors_groups(index_df, df)
+            diff = calculate_distance(new_user, group_vector)
+            if diff < threshold:
+                if diff < min_diff:
+                    min_diff = diff
+                    dict_for_users.update({group: min_diff})
 
     return dict_for_users
 
@@ -59,16 +59,13 @@ def group_without_topic(dict_value, df):
     return dict_value
 
 
-def get_vectors_groups(dict_value, df):
+def get_vectors_groups(df_value, df):
+    #can change df to columns list
     list_vector = list()
-    for value in dict_value.values():
-        df_value = df.loc[value[0]]
-        list_vector = list()
-        for i, row in df_value.iterrows():
-            list_vector.append(row[df.columns.difference(['Unnamed: 0', 'group'])].values)
-        mean_vector = np.mean(list_vector, axis=0)
-        list_vector.append(mean_vector)
-        return list_vector
+    for i, row in df_value.iterrows():
+        list_vector.append(row[df.columns.difference(['Unnamed: 0', 'group'])].values)
+    mean_vector = np.mean(list_vector, axis=0)
+    return mean_vector
 
 
 if __name__ == '__main__':
@@ -90,6 +87,11 @@ if __name__ == '__main__':
         print(dict_group)
 
     print(dict_group)
-    print(get_vectors_groups(dict_group, df))
+    for value in dict_group.values():
+        #print(value)
+        df_value = df.loc[value[0]]
+        #print(get_vectors_groups(df_value, df))
+
+
 
 
