@@ -19,7 +19,7 @@ def main():
     app = Flask(__name__)
 
     @app.route("/get_chat_id")
-    def get_chat_id():
+    def get_id():
         print("start")
         con = create_connection()
 
@@ -44,7 +44,7 @@ def main():
         return "0"
 
     @app.route("/update_vector")
-    def update_vector():
+    def update_vec():
         print("start")
         con = create_connection()
 
