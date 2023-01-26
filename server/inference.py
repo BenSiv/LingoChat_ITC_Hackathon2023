@@ -27,9 +27,9 @@ def main():
         print(feature_inputs)
         # example:
         # feature_inputs = {"user_id" : 823, "language" : "english", "max_users" : 6}
-        # max_users = int(feature_inputs["max_users"])
-        # user_id = int(feature_inputs["user_id"])
-        # print(user_id,max_users)
+        max_users = int(feature_inputs["max_users"])
+        user_id = int(feature_inputs["user_id"])
+        print(user_id,max_users)
 
         user_vector = get_user_vector(user_id, con)
         print(user_vector)
