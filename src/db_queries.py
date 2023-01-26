@@ -111,7 +111,7 @@ def update_chat_vector(chat_id, chat_vector, con):
 def get_interests_names(con):
     query = f'''SELECT name FROM Interests;'''
     interests_names = sql_query(query, con)
-    return np.array(interests_names)
+    return np.array(interests_names).flatten()
     # if len(interests_ids) == 1:
     #     query = f'''SELECT name FROM Interests WHERE id = {interests_ids[0]};'''
     # else:
