@@ -63,7 +63,7 @@ def main():
         indices = np.where(rating_vector == rating_vector.max())[0] + 1
         print(indices)
         top_interests = " ".join(get_interests_names(con)[indices])
-        print(indices)
+        print(top_interests)
         return top_interests
 
     app.run(host='0.0.0.0', port=8080)
