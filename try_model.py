@@ -9,7 +9,6 @@ def calculate_distance(user1, user2):
     return distance.euclidean(user1, user2)
 
 def best_topic(index_list, df):
-    means = list()
     index_df = df.loc[index_list]
     index_df = index_df.drop(columns=['Age', 'Gender_mapped', 'Unnamed: 0'])
     means = index_df.mean().values
