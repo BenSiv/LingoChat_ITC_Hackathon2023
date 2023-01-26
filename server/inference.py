@@ -29,8 +29,10 @@ def main():
         # feature_inputs = {"user_id" : 823, "language" : "english", "max_users" : 6}
         max_users = int(feature_inputs["max_users"])
         user_id = int(feature_inputs["user_id"])
+        print(user_id,max_users)
 
         user_vector = get_user_vector(user_id, con)
+        print(user_vector)
         available_chats = get_available_chats(max_users, feature_inputs["language"], con)
         for user_number, chat_rooms in available_chats.items():
             current_chat_vectors = get_chat_vectors(chat_rooms, con)

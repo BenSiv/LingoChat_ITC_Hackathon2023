@@ -54,7 +54,6 @@ def get_user_vector(user_id, con):
 
 def get_available_chats(max_users, language, con):
     chat_rooms = {}
-    print(max_users)
     for num in range(1, max_users):
         Chat_rooms_id_query = f'''SELECT id FROM Chat_Rooms WHERE active_users={num} AND language='{language}';'''
         Chat_rooms_id = sql_query(Chat_rooms_id_query, con)
