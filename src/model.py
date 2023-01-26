@@ -8,6 +8,11 @@ pd.options.mode.chained_assignment = None
 def calculate_distance(user1, user2):
     return distance.euclidean(user1, user2)
 
+def distance_vectorized(chat_vectors, user_vector):
+    distances = list()
+    for chat_vec in chat_vectors:
+        distances.append(calculate_distance(chat_vec, user_vector))
+    return distances
 
 def best_topic(index_list, df):
     index_df = df.loc[index_list]

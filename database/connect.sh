@@ -4,7 +4,7 @@
 chmod 400 Ben-key-pair.pem
 
 # connect to server via ssh
-ssh -i "~/Documents/ITC/Main/Deployment/DeployConfig/Ben-key-pair.pem" "ubuntu@ec2-35-159-22-109.eu-central-1.compute.amazonaws.com"
+ssh -i "~/Documents/ITC/Main/Deployment/DeployConfig/Ben-key-pair.pem" "ubuntu@ec2-18-196-35-85.eu-central-1.compute.amazonaws.com"
 
 # clone git repo
 git clone https://github.com/BenSiv/LingoChat_ITC_Hackathon2023.git
