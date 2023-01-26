@@ -39,6 +39,9 @@ def main():
             if current_chat_vectors:
                 continue
             distances = np.array(distance_vectorized(current_chat_vectors, user_vector))
+            print(distances)
+            if distances:
+                continue
             min_dist = distances.min()
             argmin_dist = distances.argmin()
             if min_dist < THRESHOLD:
