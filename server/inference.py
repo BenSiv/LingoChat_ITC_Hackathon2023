@@ -40,8 +40,8 @@ def main():
             min_dist = distances.min()
             argmin_dist = distances.argmin()
             if min_dist < THRESHOLD:
-                return chat_rooms[argmin_dist]
-        return 0
+                return str(chat_rooms[argmin_dist])
+        return "0"
 
     @app.route("/update_chat_vector")
     def update_chat_vector():
