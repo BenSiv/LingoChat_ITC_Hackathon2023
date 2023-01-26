@@ -94,6 +94,7 @@ def calc_chat_vector(chat_id, con):
     # get users ratings
     user_vectors = list()
     for Chat_user in Chat_users:
+        # Chat_user = Chat_users[0]
         user_vector = get_user_vector(Chat_user[0], con)
         user_vectors.append(user_vector)
     user_vectors = np.array(user_vectors)
@@ -106,6 +107,17 @@ def calc_chat_vector(chat_id, con):
 def update_chat_vector(chat_id, chat_vector, con):
     update_chat_vector_query = f'''UPDATE Chat_Rooms SET chat_vector = "{tuple(chat_vector)}" WHERE id = {chat_id};'''
     sql_query(update_chat_vector_query, con)
+
+def get_interests_names(con):
+    query = f'''SELECT name FROM Interests;'''
+    interests_names = sql_query(query, con)
+    return np.array(interests_names)
+    # if len(interests_ids) == 1:
+    #     query = f'''SELECT name FROM Interests WHERE id = {interests_ids[0]};'''
+    # else:
+    #     query = f'''SELECT name FROM Interests WHERE id in {tuple(interests_ids)};'''
+    # interests_names = sql_query(query, con)
+    # return np.array(interests_names)
 
 
 def main():

@@ -55,12 +55,14 @@ def main():
 
         inputs = request.args.to_dict()
         # example:
-        # inputs = {"chat_id" : 450}
+        # inputs = {"chat_id" : 551}
         chat_id = int(inputs["chat_id"])
         print(inputs)
         rating_vector = calc_chat_vector(chat_id, con)
         update_chat_vector(chat_id, rating_vector, con)
-        return "done"
+        indices = np.where(rating_vector == rating_vector.max())[0] + 1
+        top_interests = " ".join(get_interests_names(con)[indices])
+        return top_interests
 
     app.run(host='0.0.0.0', port=8080)
 
