@@ -62,7 +62,7 @@ def main():
         update_chat_vector(chat_id, rating_vector, con)
         indices = np.where(rating_vector == rating_vector.max())[0] + 1
         print(indices)
-        top_interests = " ".join(get_interests_names(con)[indices])
+        top_interests = ", ".join(get_interests_names(con)[indices])
         print(top_interests)
         return top_interests
 
