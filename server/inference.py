@@ -43,7 +43,7 @@ def main():
                 return str(chat_rooms[argmin_dist])
         return "0"
 
-    @app.route("/update_chat_vector")
+    @app.route("/update_vector")
     def update_vector():
         print("start")
         con = create_connection()
