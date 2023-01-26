@@ -55,7 +55,7 @@ def main():
         print(inputs)
         rating_vector = calc_chat_vector(chat_id, con)
         update_chat_vector(chat_id, rating_vector, con)
-
+        return "done"
 
     app.run(host='0.0.0.0', port=8080)
 
